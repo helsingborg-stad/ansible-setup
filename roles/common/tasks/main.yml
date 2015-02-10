@@ -1,0 +1,21 @@
+---
+- name: apt-get upgrade
+  sudo: true
+  apt:
+    upgrade=yes
+    update_cache=yes
+  tags:
+    - common
+
+- name: install apt packages
+  sudo: true
+  apt:
+    name={{item}}
+    state=latest
+  with_items:
+    - vim
+    - screen
+    - git
+    - htop
+  tags:
+    - common
