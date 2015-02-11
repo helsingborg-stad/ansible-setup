@@ -14,7 +14,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define "web2" do |web2|
-    # web1.vm.box = "chef/debian-7.4"
     web2.vm.box = "https://github.com/jose-lpa/packer-ubuntu_14.04/releases/download/1.0/ubuntu-14.04.box"
     web2.vm.hostname = "web2"
 

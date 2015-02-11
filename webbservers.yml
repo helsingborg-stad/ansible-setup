@@ -2,12 +2,8 @@
 - name: Setup server - docker and python
   user: vagrant
   hosts: vagrant
-
   roles:
     # - common
     - docker
 
-- name: Install Docker on Rax Server
-  hosts: vagrant
-  roles:
-    - angstwad.docker_ubuntu
+
