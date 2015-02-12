@@ -1,6 +1,3 @@
 ---
-- name: Install Docker on ubuntu
-  sudo: True
-  hosts: vagrant
-  roles:
-    - angstwad.docker_ubuntu
+- name: Install pycurl
+  apt: pkg=python-pycurl update_cache=yes cache_valid_time=600
