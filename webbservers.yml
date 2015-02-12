@@ -1,7 +1,7 @@
 ---
 - name: Setup frontend servers
   user: vagrant
-  hosts: vagrant-web
+  hosts: web
   roles:
     - common
     - docker
