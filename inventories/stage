@@ -1,4 +1,13 @@
-[vagrant]
-web1 ansible_ssh_host=10.0.0.11 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/web1/virtualbox/private_key
-web2 ansible_ssh_host=10.0.0.12 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/web2/virtualbox/private_key
-dbha ansible_ssh_host=10.0.0.21 ansible_ssh_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/dbha/virtualbox/private_key
+[vagrant-web]
+web1 ansible_ssh_host=10.0.0.11 ansible_ssh_private_key_file=.vagrant/machines/web1/virtualbox/private_key
+web2 ansible_ssh_host=10.0.0.12 ansible_ssh_private_key_file=.vagrant/machines/web2/virtualbox/private_key
+
+[vagrant-db]
+dbha ansible_ssh_host=10.0.0.21 ansible_ssh_private_key_file=.vagrant/machines/dbha/virtualbox/private_key
+
+[vagrant-all:children]
+vagrant-web
+vagrant-db
+
+[vagrant-all:vars]
+ansible_ssh_user=vagrant
