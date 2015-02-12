@@ -6,3 +6,20 @@ project_folder: "{{ ansible_env.HOME }}/{{ project_name }}"
 virtualenv_dir: "{{ ansible_env.HOME }}/venv_{{ project_name }}"
 
 
+mysql_root_password: test
+mysql_enabled_on_startup: yes
+mysql_port: "3306"
+mysql_bind_address: '0.0.0.0'
+
+mysql_databases:
+  - name: helsingborg
+    encoding: utf8
+    collation: utf8_general_ci
+
+mysql_users:
+  - name: wordpress
+    host: "%"
+    password: test2
+    priv: "helsingborg.*:ALL"
+
+
