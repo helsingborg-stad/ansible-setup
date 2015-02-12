@@ -1,0 +1,6 @@
+---
+- name: Setup database server
+  user: vagrant
+  hosts: vagrant-db
+  roles:
+    - common

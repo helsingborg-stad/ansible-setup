@@ -1,9 +1,9 @@
 ---
-- name: Setup server - docker and python
+- name: Setup frontend servers
   user: vagrant
-  hosts: vagrant
+  hosts: vagrant-web
   roles:
-    # - common
+    - common
     - docker
 
 
