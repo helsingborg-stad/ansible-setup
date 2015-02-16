@@ -5,5 +5,5 @@
   vars_files:
     - group_vars/all
   roles:
-    # - common
+    - common
     - { role: geerlingguy.mysql, sudo: True }

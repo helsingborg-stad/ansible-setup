@@ -5,7 +5,7 @@ project_name: helsingborg
 project_folder: "{{ ansible_env.HOME }}/{{ project_name }}"
 virtualenv_dir: "{{ ansible_env.HOME }}/venv_{{ project_name }}"
 
-
+# Mysql
 mysql_root_password: test
 mysql_enabled_on_startup: yes
 mysql_port: "3306"
