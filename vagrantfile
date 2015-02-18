@@ -5,6 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box_check_update = false
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.define "web1" do |web1|
     web1.vm.box = "https://github.com/jose-lpa/packer-ubuntu_14.04/releases/download/1.0/ubuntu-14.04.box"
