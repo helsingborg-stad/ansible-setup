@@ -21,5 +21,3 @@ mysql_users:
     host: "%"
     password: test2
     priv: "helsingborg.*:ALL"
-
-
