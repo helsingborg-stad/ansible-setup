@@ -1,9 +1,8 @@
 ---
 - name: Setup database server
   user: vagrant
+  sudo: true
   hosts: db
-  vars_files:
-    - group_vars/all
   roles:
     - common
-    - { role: geerlingguy.mysql, sudo: True }
+    - mariadb

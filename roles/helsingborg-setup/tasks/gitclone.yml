@@ -1,0 +1,7 @@
+---
+- name: git clone
+  git:
+    repo="{{ git_repo }}"
+    dest="{{ project_folder }}"
+    version="{{ git_branch }}"
+    recursive=no

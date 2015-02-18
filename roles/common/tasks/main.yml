@@ -1,21 +1,15 @@
 ---
-- name: apt-get upgrade
-  sudo: true
-  apt:
-    upgrade=yes
-    update_cache=yes
-  tags:
-    - common
+- name: install yum update
+  shell: yum -y update
 
-- name: install apt packages
+- name: install yum packages
   sudo: true
-  apt:
+  yum:
     name={{item}}
     state=latest
   with_items:
     - vim
     - screen
     - git
-    - htop
   tags:
     - common
