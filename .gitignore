@@ -1,2 +1,2 @@
 .vagrant/
-mysql/files/
+roles/mysql/files/
