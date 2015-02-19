@@ -1,7 +1,4 @@
 ---
-- name: install yum update
-  shell: yum -y update
-
 - name: install yum packages
   sudo: true
   yum:

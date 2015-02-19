@@ -29,4 +29,3 @@
 - include: secure-installation.yml
 - include: databases.yml
 - include: users.yml
-- include: replication.yml

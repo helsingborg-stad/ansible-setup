@@ -5,4 +5,5 @@
   hosts: db
   roles:
     - common
+    - { role: geerlingguy.firewall }
     - mariadb
