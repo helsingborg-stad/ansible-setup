@@ -2,8 +2,7 @@
 
 # Common
 project_name: helsingborg
-project_folder: "{{ ansible_env.HOME }}/{{ project_name }}"
-virtualenv_dir: "{{ ansible_env.HOME }}/venv_{{ project_name }}"
+project_folder: "/var/www/html"
 
 # Mysql
 mysql_root_password: test
