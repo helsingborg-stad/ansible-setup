@@ -1,7 +1,12 @@
 ---
-- name: git clone
-  git:
-    repo="{{ git_repo }}"
-    dest="{{ project_folder }}"
-    version="{{ git_branch }}"
-    recursive=no
+- name: install core packages for frontend
+  sudo: true
+  yum:
+    name={{item}}
+    state=latest
+  with_items:
+    - php
+    - php-cli
+
+
+- include: wp-cli.yml
