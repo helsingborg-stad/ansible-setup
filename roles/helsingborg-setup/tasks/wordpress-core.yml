@@ -1,0 +1,44 @@
+---
+
+- name: Check if /usr/local/bin/wp file already exists.
+  stat: "path={{ project_folder }}/wp-config.php"
+  register: wp_config_file
+
+- name: download wordpress core
+  sudo: True
+  shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
+  with_items:
+  - wp core download
+  when: wp_config_file.stat.exists ==  false
+
+- name: set owner and group
+  sudo: True
+  file:
+    recurse=yes
+    path={{ project_folder }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
+
+- name: add config file
+  sudo: True
+  template:
+    src=wp-config.php
+    dest={{ project_folder }}/wp-config.php
+
+
+
+
+# - name: download wordpress install
+#   sudo: True
+#   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
+#   with_items:
+#   - wp core install
+#   when: wp_config_file.stat.exists
+
+  # wp core multisite-install --url=10.0.0.31 --title=delta --admin_user=yolo --admin_password=test --admin_email=asd@asd.se
+
+# Enable WP_DEBUG and WP_DEBUG_LOG
+#  wp core config --dbname=helsingborg --dbuser=wordpress --dbpass=test2 --extra-php <<PHP define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true ); PHP
+
+# setsebool httpd_can_network_connect_db=1
