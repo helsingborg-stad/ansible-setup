@@ -6,45 +6,28 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box_check_update = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
-
-  config.vm.define "web1" do |web1|
-    web1.vm.box = "https://github.com/jose-lpa/packer-ubuntu_14.04/releases/download/1.0/ubuntu-14.04.box"
-    web1.vm.hostname = "web1"
-
-    web1.vm.network "private_network", ip: "10.0.0.11"
-  end
-
-  config.vm.define "web2" do |web2|
-    web2.vm.box = "https://github.com/jose-lpa/packer-ubuntu_14.04/releases/download/1.0/ubuntu-14.04.box"
-    web2.vm.hostname = "web2"
-
-    web2.vm.network "private_network", ip: "10.0.0.12"
-  end
-
-  config.vm.define "dbha" do |dbha|
-    dbha.vm.box = "https://github.com/jose-lpa/packer-ubuntu_14.04/releases/download/1.0/ubuntu-14.04.box"
-    dbha.vm.hostname = "dbha"
-
-    dbha.vm.network "private_network", ip: "10.0.0.21"
-  end
+  config.vm.box_check_update = false
 
   config.vm.define "web3" do |web1|
-    web1.vm.box = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
-    web1.vm.hostname = "web1"
+    web1.vm.box = "centos7"
+    web1.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    web1.vm.hostname = "web3"
 
     web1.vm.network "private_network", ip: "10.0.0.31"
   end
 
   config.vm.define "web4" do |web2|
-    web2.vm.box = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
-    web2.vm.hostname = "web2"
+    web2.vm.box = "centos7"
+    web2.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    web2.vm.hostname = "web4"
 
     web2.vm.network "private_network", ip: "10.0.0.32"
   end
 
   config.vm.define "db" do |dbha|
-    dbha.vm.box = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
-    dbha.vm.hostname = "dbha"
+    dbha.vm.box = "centos7"
+    dbha.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    dbha.vm.hostname = "db"
 
     dbha.vm.network "private_network", ip: "10.0.0.41"
   end
