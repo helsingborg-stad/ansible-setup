@@ -25,6 +25,7 @@
   with_items:
     - php
     - php-cli
+    - php-mysql
 
 - include: wp-cli.yml
 - include: wordpress-core.yml

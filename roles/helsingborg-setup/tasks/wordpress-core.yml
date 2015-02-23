@@ -9,15 +9,6 @@
   - wp core download
   when: wp_config_file.stat.exists == false
 
-- name: set owner and group
-  file:
-    recurse=yes
-    path={{ project_folder }}
-    owner={{ project_user }}
-    group={{ project_group }}
-    mode=0755
-  when: wp_config_file.stat.exists == false
-
 - name: download salts
   get_url:
     url=https://api.wordpress.org/secret-key/1.1/salt/
@@ -36,8 +27,13 @@
     dest={{ project_folder }}/wp-config.php
   when: wp_config_file.stat.exists == false
 
-
-
+- name: set owner and group
+  file:
+    recurse=yes
+    path={{ project_folder }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
 
 # - name: download wordpress install
 #   sudo: True
