@@ -45,14 +45,9 @@ define('DB_COLLATE', '');
  *
  * @since 2.6.0
  */
-define('AUTH_KEY',         'salts');
-define('SECURE_AUTH_KEY',  'salts');
-define('LOGGED_IN_KEY',    'salts');
-define('NONCE_KEY',        'salts');
-define('AUTH_SALT',        'salts');
-define('SECURE_AUTH_SALT', 'salts');
-define('LOGGED_IN_SALT',   'salts');
-define('NONCE_SALT',       'salts');
+{% for salt in salts.stdout_lines %}
+{{ salt }}
+{% endfor %}
 
 /**#@-*/
 

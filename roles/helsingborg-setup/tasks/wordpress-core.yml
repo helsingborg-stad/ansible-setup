@@ -1,5 +1,4 @@
 ---
-
 - name: Check if /usr/local/bin/wp file already exists.
   stat: "path={{ project_folder }}/wp-config.php"
   register: wp_config_file
@@ -8,7 +7,7 @@
   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
   with_items:
   - wp core download
-  when: wp_config_file.stat.exists ==  false
+  when: wp_config_file.stat.exists == false
 
 - name: set owner and group
   file:
@@ -17,11 +16,25 @@
     owner={{ project_user }}
     group={{ project_group }}
     mode=0755
+  when: wp_config_file.stat.exists == false
+
+- name: download salts
+  get_url:
+    url=https://api.wordpress.org/secret-key/1.1/salt/
+    dest={{ project_folder }}/wp-salts
+    mode=0755
+  when: wp_config_file.stat.exists == false
+
+- name: register salts variable
+  shell: 'cat {{ project_folder }}/wp-salts'
+  register: salts
+  when: wp_config_file.stat.exists == false
 
 - name: add config file
   template:
     src=wp-config.php
     dest={{ project_folder }}/wp-config.php
+  when: wp_config_file.stat.exists == false
 
 
 
