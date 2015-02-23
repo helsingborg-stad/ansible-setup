@@ -3,8 +3,11 @@
 # Common
 project_name: helsingborg
 project_folder: "/var/www/html"
+project_group: www-data
+project_user: www-data
 
 # Mysql
+mysql_hostname: 10.0.0.41
 mysql_root_password: test
 mysql_enabled_on_startup: yes
 mysql_port: "3306"
