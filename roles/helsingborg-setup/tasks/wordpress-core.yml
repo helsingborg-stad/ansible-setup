@@ -5,14 +5,12 @@
   register: wp_config_file
 
 - name: download wordpress core
-  sudo: True
   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
   with_items:
   - wp core download
   when: wp_config_file.stat.exists ==  false
 
 - name: set owner and group
-  sudo: True
   file:
     recurse=yes
     path={{ project_folder }}
@@ -21,7 +19,6 @@
     mode=0755
 
 - name: add config file
-  sudo: True
   template:
     src=wp-config.php
     dest={{ project_folder }}/wp-config.php

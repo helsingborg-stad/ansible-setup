@@ -9,7 +9,6 @@
   notify: restart mysql
 
 - name: Enable and start MariaDB service
-  sudo: True
   service:
     name=mysql
     enabled=yes

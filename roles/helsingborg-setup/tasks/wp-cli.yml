@@ -12,6 +12,5 @@
   when: wp_file.stat.exists == false
 
 - name: make wp usable over the system
-  sudo: True
   command: mv wp-cli.phar /usr/local/bin/wp
   when: wp_file.stat.exists == false

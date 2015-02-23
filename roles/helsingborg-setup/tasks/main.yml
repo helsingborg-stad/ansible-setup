@@ -1,18 +1,15 @@
 ---
 - name: add the group www-data
-  sudo: True
   group:
     name={{ project_group }}
     state=present
 
 - name: add the user www-data
-  sudo: True
   user:
     name={{ project_user }}
     group={{ project_group }}
 
 - name: create wordpress directory
-  sudo: True
   file:
     recurse=yes
     path={{ project_folder }}
@@ -22,7 +19,6 @@
     state=directory
 
 - name: install core packages for frontend
-  sudo: true
   yum:
     name={{item}}
     state=latest

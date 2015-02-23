@@ -1,8 +1,8 @@
 ---
 - name: Setup database server
   user: vagrant
-  sudo: true
   hosts: db
+  sudo: true
   roles:
     - common
     - { role: geerlingguy.firewall }

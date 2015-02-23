@@ -1,6 +1,7 @@
 ---
 - name: Setup frontend servers
   user: vagrant
+  sudo: True
   hosts: web
   roles:
     - common
