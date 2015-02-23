@@ -32,6 +32,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dbha.vm.network "private_network", ip: "10.0.0.41"
   end
 
+  config.vm.define "lb" do |lb|
+    lb.vm.box = "centos7"
+    lb.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    lb.vm.hostname = "lb"
+    lb.vm.network "private_network", ip: "10.0.0.11"
+  end
+
+
+
   # config.vm.provision "ansible" do |ansible|
   #   ansible.playbook = "site.yml"
   #   ansible.inventory_path = "inventories/stage"

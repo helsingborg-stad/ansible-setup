@@ -1,4 +1,4 @@
----
+d---
 # Include variables and define needed variables.
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
@@ -8,12 +8,6 @@
   yum:
     name=MySQL-python
     state=present
-
-- name: Add mariadb repo
-  sudo: True
-  copy:
-    src=mariadb.repo
-    dest=/etc/yum.repos.d/mariadb.repo
 
 - name: Install MariaDB
   sudo: True

@@ -1,9 +1,10 @@
 ---
 - name: Setup frontend servers
-  user: vagrant
+  remote_user: root
   sudo: True
   hosts: web
   roles:
     - common
     - { role: geerlingguy.firewall }
+    - nginx
     - helsingborg-setup

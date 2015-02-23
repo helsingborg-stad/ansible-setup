@@ -10,3 +10,9 @@
     - git
   tags:
     - common
+
+- name: Add mariadb repo
+  sudo: True
+  copy:
+    src=mariadb.repo
+    dest=/etc/yum.repos.d/mariadb.repo
