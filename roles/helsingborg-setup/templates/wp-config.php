@@ -67,9 +67,6 @@ $table_prefix  = 'wp_';
  * in their development environments.
  */
 define('WP_DEBUG', false);
-//define('WP_HOME','tt.helsingborg.se');
-//define('WP_SITEURL','tt.helsingborg.se');
-//define('RELOCATE', true);
 define( 'WP_POST_REVISIONS', 10 );
 /* That's all, stop editing! Happy blogging. */
 
@@ -80,7 +77,7 @@ define('FS_METHOD', 'direct');
 define('WP_ALLOW_MULTISITE', true);
 define('MULTISITE', true);
 define('SUBDOMAIN_INSTALL', false);
-define('DOMAIN_CURRENT_SITE', '{{ mysql_hostname }}');
+define('DOMAIN_CURRENT_SITE', '{{ ansible_enp0s8.ipv4.address }}');
 define('PATH_CURRENT_SITE', '/');
 define('SITE_ID_CURRENT_SITE', 1);
 define('BLOG_ID_CURRENT_SITE', 1);
