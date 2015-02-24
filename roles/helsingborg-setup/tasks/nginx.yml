@@ -1,7 +1,4 @@
 ---
-dependencies:
-- { role: nginx }
-
 - name: Copy nginx configuration for wordpress
   template:
     src=nginx.conf.j2

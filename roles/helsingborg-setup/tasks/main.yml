@@ -38,3 +38,4 @@
 
 - include: wp-cli.yml
 - include: wordpress-core.yml
+- include: nginx.yml
