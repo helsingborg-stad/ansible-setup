@@ -2,6 +2,7 @@ server {
     listen       80 default_server;
     server_name  {{ ansible_enp0s8.ipv4.address }};
     root {{ project_folder }};
+    add_header X-WHO-AM-I {{ ansible_nodename }};
 
     access_log /var/log/nginx/{{ project_name }}-access;
     error_log /var/log/nginx/{{ project_name }}-error;

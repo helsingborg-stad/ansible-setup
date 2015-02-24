@@ -2,9 +2,8 @@
 - name: Setup frontend servers
   remote_user: root
   sudo: True
-  hosts: web
+  hosts: loadbalancer
   roles:
     - common
     - { role: geerlingguy.firewall }
-    - { role: nginx, tags: ['webserver'] }
-    - helsingborg-setup
+    - loadbalancer

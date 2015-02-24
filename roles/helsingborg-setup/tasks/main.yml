@@ -26,6 +26,15 @@
     - php
     - php-cli
     - php-mysql
+    - MariaDB-client
+    - php-fpm
+
+- name: restart php-fpm
+  sudo: true
+  service:
+    name=php-fpm
+    state=restarted
+    enabled=yes
 
 - include: wp-cli.yml
 - include: wordpress-core.yml

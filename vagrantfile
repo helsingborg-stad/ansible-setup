@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     lb.vm.box = "centos7"
     lb.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
     lb.vm.hostname = "lb"
-    lb.vm.network "private_network", ip: "10.0.0.11"
+    lb.vm.network "private_network", ip: "10.0.0.51"
   end
 
 

@@ -8,6 +8,7 @@
   with_items:
   - wp core download
   when: wp_config_file.stat.exists == false
+  ignore_errors: yes
 
 - name: download salts
   get_url:
