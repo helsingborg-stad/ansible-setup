@@ -5,6 +5,7 @@ project_name: helsingborg
 project_folder: "/var/www/html"
 project_group: www-data
 project_user: www-data
+domain_name: test.helsingborg.se
 
 # Mysql
 mysql_hostname: 10.0.0.41
