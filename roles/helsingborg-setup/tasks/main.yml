@@ -1,5 +1,6 @@
 ---
 - include: configure.yml
 - include: wp-cli.yml
+- include: gitclone.yml
 - include: wordpress-core.yml
 - include: nginx.yml

@@ -43,7 +43,7 @@
 #   - wp core install
 #   when: wp_config_file.stat.exists
 
-  # wp core multisite-install --url=10.0.0.31 --title=delta --admin_user=yolo --admin_password=test --admin_email=asd@asd.se
+  # wp core multisite-install --title=delta --admin_user=yolo --admin_password=test --admin_email=asd@asd.se
 
 # Enable WP_DEBUG and WP_DEBUG_LOG
 #  wp core config --dbname=helsingborg --dbuser=wordpress --dbpass=test2 --extra-php <<PHP define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true ); PHP

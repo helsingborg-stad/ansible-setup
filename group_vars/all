@@ -6,6 +6,12 @@ project_folder: "/var/www/html"
 project_group: www-data
 project_user: www-data
 domain_name: test.helsingborg.se
+old_domain_name: 10.96.5.76
+sql_backup_file: 150225.sql
+
+# GIT
+git_repo: https://github.com/henrikhelsingborg/TT.git
+git_branch: master
 
 # Mysql
 mysql_hostname: 10.0.0.41
