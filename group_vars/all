@@ -30,7 +30,3 @@ firewall_allowed_tcp_ports:
   - "25"
   - "80"
   - "3306"
-
-# Nginx
-nginx_max_clients: 512
-nginx_user: "www-data"
