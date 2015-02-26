@@ -1,6 +1,6 @@
 ---
 - name: Setup database server
-  user: vagrant
+  remote_user: root
   hosts: db
   sudo: true
   roles:
