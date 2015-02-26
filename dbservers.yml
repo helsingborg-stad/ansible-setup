@@ -4,7 +4,7 @@
   hosts: db
   sudo: true
   roles:
-    - common
-    - { role: geerlingguy.firewall }
-    - mariadb
-    - hb-database
+    - { role: common, tags: ['core'] }
+    - { role: geerlingguy.firewall, tags: ['core'] }
+    - { role: mariadb, tags: ['core'] }
+    - { role: hb-database, tags: ['deploy', 'db'] }

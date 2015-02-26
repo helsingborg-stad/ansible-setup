@@ -7,4 +7,4 @@
     - { role: common, tags: ['core'] }
     - { role: geerlingguy.firewall, tags: ['core'] }
     - { role: nginx, tags: ['core'] }
-    - hb-web
+    - { role: hb-web }
