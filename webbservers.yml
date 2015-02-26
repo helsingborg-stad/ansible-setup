@@ -1,10 +1,10 @@
 ---
 - name: Setup frontend servers
   remote_user: root
-  sudo: True
   hosts: web
+  sudo: True
   roles:
-    - common
-    - { role: geerlingguy.firewall }
-    - { role: nginx, tags: ['webserver'] }
-    - helsingborg-setup
+    - { role: common, tags: ['core'] }
+    - { role: geerlingguy.firewall, tags: ['core'] }
+    - { role: nginx, tags: ['core'] }
+    - hb-web

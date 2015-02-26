@@ -1,3 +1,0 @@
----
-dependencies:
-  - { role: angstwad.docker_ubuntu, sudo: True, name: Install Docker on ubuntu }

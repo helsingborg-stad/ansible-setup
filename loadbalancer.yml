@@ -1,9 +1,9 @@
 ---
 - name: Setup frontend servers
   remote_user: root
-  sudo: True
   hosts: loadbalancer
+  sudo: True
   roles:
     - common
     - { role: geerlingguy.firewall }
-    - loadbalancer
+    - hb-loadbalancer
