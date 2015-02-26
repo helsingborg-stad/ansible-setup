@@ -27,25 +27,4 @@
     src=wp-config.php
     dest={{ project_folder }}/wp-config.php
   when: wp_config_file.stat.exists == false
-
-- name: set owner and group
-  file:
-    recurse=yes
-    path={{ project_folder }}
-    owner={{ project_user }}
-    group={{ project_group }}
-    mode=0755
-
-# - name: download wordpress install
-#   sudo: True
-#   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
-#   with_items:
-#   - wp core install
-#   when: wp_config_file.stat.exists
-
-  # wp core multisite-install --title=delta --admin_user=yolo --admin_password=test --admin_email=asd@asd.se
-
-# Enable WP_DEBUG and WP_DEBUG_LOG
-#  wp core config --dbname=helsingborg --dbuser=wordpress --dbpass=test2 --extra-php <<PHP define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true ); PHP
-
-# setsebool httpd_can_network_connect_db=1
+  notify: set owner and group

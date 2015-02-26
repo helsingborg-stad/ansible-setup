@@ -5,3 +5,17 @@
     name=php-fpm
     state=restarted
     enabled=yes
+
+- name: move git files project folder
+  shell: "cp -r /tmp/repo/* {{ project_folder }}"
+
+- name: set owner and group
+  file:
+    recurse=yes
+    path={{ project_folder }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
+
+- name: allow mysql calls over the network
+  shell: "setsebool httpd_can_network_connect_db=1"

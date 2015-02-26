@@ -28,7 +28,8 @@
     - php-mysql
     - MariaDB-client
     - php-fpm
-  notify: restart php-fpm
+  notify:
+    - restart php-fpm
+    - allow mysql calls over the network
 
-- name: allow mysql calls over the network
-  shell: "setsebool httpd_can_network_connect_db=1"
+

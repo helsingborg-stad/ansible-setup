@@ -5,6 +5,4 @@
     dest="/tmp/repo"
     version="{{ git_branch }}"
     recursive=no
-
-- name: move files to repo
-  shell: "cp -r /tmp/repo/* {{ project_folder }}"
+  notify: move git files project folder
