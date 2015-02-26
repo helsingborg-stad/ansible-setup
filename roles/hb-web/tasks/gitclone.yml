@@ -5,4 +5,6 @@
     dest="/tmp/repo"
     version="{{ git_branch }}"
     recursive=no
-  notify: move git files project folder
+  notify:
+    - move git files project folder
+    - set owner and group

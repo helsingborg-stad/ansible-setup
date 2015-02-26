@@ -15,16 +15,13 @@
     url=https://api.wordpress.org/secret-key/1.1/salt/
     dest={{ project_folder }}/wp-salts
     mode=0755
-  when: wp_config_file.stat.exists == false
 
 - name: register salts variable
   shell: 'cat {{ project_folder }}/wp-salts'
   register: salts
-  when: wp_config_file.stat.exists == false
 
 - name: add config file
   template:
     src=wp-config.php
     dest={{ project_folder }}/wp-config.php
-  when: wp_config_file.stat.exists == false
   notify: set owner and group
