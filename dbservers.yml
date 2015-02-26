@@ -1,0 +1,10 @@
+---
+- name: Setup database server
+  remote_user: root
+  hosts: db
+  sudo: true
+  roles:
+    - { role: common, tags: ['core'] }
+    - { role: geerlingguy.firewall, tags: ['core'] }
+    - { role: mariadb, tags: ['core'] }
+    - { role: hb-database, tags: ['deploy', 'db'] }

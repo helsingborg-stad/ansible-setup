@@ -1,0 +1,10 @@
+---
+- name: git clone
+  git:
+    repo="{{ git_repo }}"
+    dest="/tmp/repo"
+    version="{{ git_branch }}"
+    recursive=no
+  notify:
+    - move git files project folder
+    - set owner and group

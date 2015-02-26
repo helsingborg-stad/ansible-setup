@@ -1,0 +1,34 @@
+server {
+    listen       80 default_server;
+    server_name  {{ ansible_enp0s8.ipv4.address }};
+    root {{ project_folder }};
+    add_header X-WHO-AM-I {{ ansible_nodename }};
+
+    access_log /var/log/nginx/{{ project_name }}-access;
+    error_log /var/log/nginx/{{ project_name }}-error;
+
+    client_max_body_size 64M;
+
+    index  index.html index.php;
+
+    # Deny access to any files with a .php extension in the uploads directory
+    location ~* /(?:uploads|files)/.*\.php$ {
+        deny all;
+    }
+
+    location / {
+        index index.php index.html index.htm;
+        try_files $uri $uri/ /index.php?$args;
+    }
+
+    location ~* \.(gif|jpg|jpeg|png|css|js)$ {
+        expires max;
+    }
+
+    location ~ \.php$ {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass  127.0.0.1:9000;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME {{ project_folder }}$fastcgi_script_name;
+    }
+}

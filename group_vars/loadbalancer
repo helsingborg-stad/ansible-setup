@@ -1,0 +1,7 @@
+---
+
+# IP tables
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"

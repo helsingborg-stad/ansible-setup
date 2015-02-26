@@ -1,0 +1,15 @@
+---
+- name: Copy my.cnf global MySQL configuration.
+  template:
+    src: my.cnf.j2
+    dest: "{{ mysql_config_file }}"
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart mysql
+
+- name: Enable and start MariaDB service
+  service:
+    name=mysql
+    enabled=yes
+    state=started
