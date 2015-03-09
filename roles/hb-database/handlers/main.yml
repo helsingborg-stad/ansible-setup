@@ -1,6 +1,6 @@
 ---
+- name: restarting nfs
+  service: name=nfs state=restarted
+
 - name: execute updates on mysql database
   command: python /tmp/mysql_update.py
-
-- name: restart nfs
-  service: "name=nfs state=restarted"

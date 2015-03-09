@@ -1,0 +1,16 @@
+---
+
+- name: create upload directory
+  file:
+    recurse=yes
+    path={{ project_upload_folder }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
+    state=directory
+
+- mount:
+    name="{{ project_upload_folder }}"
+    src="{{ hostvars[groups['db'][0]]['ansible_ssh_host'] }}":"{{ project_upload_folder }}"
+    fstype=nfs
+    state=mounted

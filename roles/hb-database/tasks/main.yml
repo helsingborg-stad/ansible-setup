@@ -1,4 +1,4 @@
 ---
-- include: nfs.yml
+- include: nfs.yml tags=nfs
 - include: sqlimport.yml
 
