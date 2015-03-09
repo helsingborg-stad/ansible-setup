@@ -1,0 +1,7 @@
+---
+
+- name: copy over to /etc/exports
+  template:
+    src=exports.j2
+    dest=/etc/exports
+  notify: restart nfs
