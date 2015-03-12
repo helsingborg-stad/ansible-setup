@@ -1,7 +1,7 @@
 ---
-- include: configure.yml
+- include: configure.yml tags=core
 - include: gitclone.yml tags=deploy,web
 - include: wp-cli.yml
 - include: wordpress-core.yml tags=deploy,web
 - include: nginx.yml tags=deploy,web
-- include: nfs.yml tags=nfs
+- include: nfs.yml tags=deploy,nfs
