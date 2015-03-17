@@ -8,6 +8,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.box_check_update = false
 
+  config.vm.define "db" do |dbha|
+    dbha.vm.box = "centos7"
+    dbha.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    dbha.vm.hostname = "db"
+
+    dbha.vm.network "private_network", ip: "10.0.0.41"
+  end
+
   config.vm.define "web3" do |web1|
     web1.vm.box = "centos7"
     web1.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
@@ -24,14 +32,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web2.vm.network "private_network", ip: "10.0.0.32"
   end
 
-  config.vm.define "db" do |dbha|
-    dbha.vm.box = "centos7"
-    dbha.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
-    dbha.vm.hostname = "db"
-
-    dbha.vm.network "private_network", ip: "10.0.0.41"
-  end
-
   config.vm.define "lb" do |lb|
     lb.vm.box = "centos7"
     lb.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
@@ -39,9 +39,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     lb.vm.network "private_network", ip: "10.0.0.51"
   end
 
-  config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "site.yml"
-    ansible.inventory_path = "inventories/vagrant"
-  end
+  # config.vm.provision "ansible" do |ansible|
+  #   ansible.playbook = "site.yml"
+  #   ansible.inventory_path = "inventories/vagrant"
+  # end
 
 end

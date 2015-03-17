@@ -1,0 +1,13 @@
+---
+- name: create upload directory
+  file:
+    recurse=yes
+    path={{ project_upload_folder }}
+    mode=0777
+    state=directory
+
+- name: copy over to /etc/exports
+  template:
+    src=exports.j2
+    dest=/etc/exports
+  notify: restarting nfs
