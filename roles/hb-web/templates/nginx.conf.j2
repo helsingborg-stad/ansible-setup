@@ -1,5 +1,7 @@
 server {
-    listen       80 default_server;
+    listen 80;
+    listen [::]:80;
+
     server_name  {{ ansible_enp0s8.ipv4.address }};
     root {{ project_folder }};
     add_header X-WHO-AM-I {{ ansible_nodename }};
