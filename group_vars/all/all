@@ -8,10 +8,6 @@ project_upload_folder: "{{ project_folder }}/wp-content/upload"
 project_group: www-data
 project_user: www-data
 
-# Wordpress specifics
-old_domain_name: 10.96.5.76
-sql_backup_file: 150225.sql
-
 # Mysql
 mysql_hostname: 10.0.0.41
 mysql_root_password: test
