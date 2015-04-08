@@ -1,7 +1,6 @@
 ---
 
 # Common
-domain_name: test.helsingborg.se
 project_name: helsingborg
 project_folder: "/var/www/html"
 project_upload_folder: "{{ project_folder }}/wp-content/upload"

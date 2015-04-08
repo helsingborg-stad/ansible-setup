@@ -3,7 +3,6 @@
 force_mysql_import: True
 
 # Wordpress specifics
-old_domain_name: www.helsingborg.se
 sql_backup_file: 150313.sql
 
 # IP tables
