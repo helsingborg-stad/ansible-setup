@@ -5,5 +5,4 @@
 
 - name: import backup to server
   mysql_db: name=helsingborg state=import target=/tmp/{{ sql_backup_file }}
-  notify: execute updates on mysql database
   when: sql_dump.changed or force_mysql_import
