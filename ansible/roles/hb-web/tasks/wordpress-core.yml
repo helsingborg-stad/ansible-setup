@@ -24,4 +24,6 @@
   template:
     src=wp-config.php
     dest={{ project_folder }}/wp-config.php
-  notify: set owner and group
+  notify:
+    - set owner and group
+    - restart php-fpm
