@@ -1,7 +1,7 @@
 Ansible deploy script
 ====
 
-Setts upp:
+The script sets up:
 - two wordpress frontends
 - one mariadb databaseserver
 - one nginx loadbalancer
