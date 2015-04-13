@@ -67,10 +67,12 @@ $table_prefix  = 'wp_';
  * in their development environments.
  */
 define('WP_DEBUG', false);
-define( 'WP_POST_REVISIONS', 10 );
+define( 'WP_POST_REVISIONS', 7 );
 /* That's all, stop editing! Happy blogging. */
 
+define('AUTOMATIC_UPDATER_DISABLED', true );
 define('FS_METHOD', 'direct');
+define('DISABLE_WP_CRON', 'false');
 
 //define( 'WP_ALLOW_REPAIR', true );
 /* Multisite */
