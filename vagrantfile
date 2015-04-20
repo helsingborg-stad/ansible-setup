@@ -6,7 +6,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box_check_update = false
   config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.box_check_update = false
 
   config.vm.define "db" do |dbha|
     dbha.vm.box = "centos7"
