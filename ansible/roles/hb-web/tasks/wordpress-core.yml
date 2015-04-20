@@ -27,11 +27,3 @@
   notify:
     - set owner and group
     - restart php-fpm
-
-- name: add nginx config file
-  template:
-    src=wc3.nginx.conf.j2
-    dest={{ project_folder }}/nginx.conf
-  notify:
-    - restart php-fpm
-    - restart nginx
