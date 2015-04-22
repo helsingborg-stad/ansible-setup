@@ -4,6 +4,7 @@
   register: wp_config_file
 
 - name: download wordpress core
+  sudo_user: www-data
   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
   with_items:
   - wp core download
