@@ -28,3 +28,10 @@
   notify:
     - set owner and group
     - restart php-fpm
+
+- name: add w3c cache config file
+  template:
+    src=w3c.config.master.php
+    dest={{ project_folder }}/wp-content/w3tc-config/master.php
+  notify:
+    - set owner and group
