@@ -3,7 +3,7 @@
 force_mysql_import: True
 
 # Wordpress specifics
-sql_backup_file: 150313.sql
+sql_backup_file: 140415.sql
 
 # IP tables
 firewall_allowed_tcp_ports:
