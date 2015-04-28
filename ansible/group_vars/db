@@ -1,6 +1,6 @@
 ---
 
-force_mysql_import: True
+force_mysql_import: False
 
 # Wordpress specifics
 sql_backup_file: 140415.sql
