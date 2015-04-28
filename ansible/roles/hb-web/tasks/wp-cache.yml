@@ -12,6 +12,16 @@
   tags:
     - setup
 
+- name: add w3 cache dummy file
+  template:
+    src=w3c.dummy.nginx.conf.j2
+    dest={{ project_folder }}/nginx.conf
+  notify:
+    - set file permissions
+    - restart nginx
+  tags:
+    - setup
+
 - name: remove php-curl extesion for w3 total cache to work
   file:
     path: /etc/php.d/curl.ini
@@ -30,11 +40,11 @@
     mode=0755
     state=directory
 
-- name: add w3c cache config file
+- name: add w3 cache config file
   template:
     src=w3c.config.master.php
     dest={{ project_folder }}/wp-content/w3tc-config/master.php
   notify:
-    - set owner and group
+    - set file permissions
   tags:
     - deploy

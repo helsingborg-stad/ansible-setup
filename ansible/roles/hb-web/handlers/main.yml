@@ -6,13 +6,31 @@
     state=restarted
     enabled=yes
 
-- name: move git files project folder
-  shell: "cp -r /tmp/repo/* {{ project_folder }}"
+- name: set file permissions
+  command: pwd
+  notify:
+    - set owner and group www-data
+    - ensure directories are 0755
+    - ensure files are 0644
+    - ensure file wp-config is 0660
 
-- name: set owner and group
+- name: set owner and group www-data
   file:
     recurse=yes
     path={{ project_folder }}
     owner={{ project_user }}
     group={{ project_group }}
-    mode=0755
+
+- name: ensure directories are 0755
+  command: find {{ project_folder }} -type d -exec chmod 0755 {} \;
+
+- name: ensure files are 0644
+  command: find {{ project_folder }} -type f -exec chmod 0644 {} \;
+
+- name: ensure file wp-config is 0660
+  file:
+    path={{ project_folder }}/wp-config.php
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0660
+

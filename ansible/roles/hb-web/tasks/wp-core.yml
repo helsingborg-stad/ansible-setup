@@ -1,15 +1,18 @@
 ---
-- name: Check if /usr/local/bin/wp file already exists.
+- name: register wp-config.php file
   stat: "path={{ project_folder }}/wp-config.php"
   register: wp_config_file
+
+- name: register index.php file
+  stat: "path={{ project_folder }}/wp-config.php"
+  register: wp_index_file
 
 - name: download wordpress core
   sudo_user: www-data
   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
   with_items:
   - wp core download
-  when: wp_config_file.stat.exists == false
-  ignore_errors: yes
+  when: wp_index_file.stat.exists == false
 
 - name: download salts
   get_url:
@@ -26,5 +29,5 @@
     src=wp-config.php
     dest={{ project_folder }}/wp-config.php
   notify:
-    - set owner and group
+    - set file permissions
     - restart php-fpm

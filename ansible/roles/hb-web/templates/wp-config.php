@@ -68,8 +68,8 @@ $table_prefix  = 'wp_';
  */
 define('WP_DEBUG', false);
 define( 'WP_POST_REVISIONS', 7 );
-/* That's all, stop editing! Happy blogging. */
 
+/* That's all, stop editing! Happy blogging. */
 define('AUTOMATIC_UPDATER_DISABLED', true );
 define('DISABLE_WP_CRON', 'false');
 
