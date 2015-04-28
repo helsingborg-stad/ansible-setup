@@ -4,15 +4,16 @@
   register: wp_config_file
 
 - name: register index.php file
-  stat: "path={{ project_folder }}/wp-config.php"
+  stat: "path={{ project_folder }}/index.php"
   register: wp_index_file
 
 - name: download wordpress core
-  sudo_user: www-data
   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
   with_items:
   - wp core download
   when: wp_index_file.stat.exists == false
+  notify:
+    - set file permissions
 
 - name: download salts
   get_url:

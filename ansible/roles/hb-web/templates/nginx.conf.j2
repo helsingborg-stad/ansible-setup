@@ -5,6 +5,8 @@ server {
     server_name  {{ ansible_enp0s8.ipv4.address }};
     add_header X-WHO-AM-I {{ ansible_nodename }};
 
+    set $cache_uri $request_uri;
+
     # Check if we need to do a redirect non www -> www
     if ($host != '{{ domain_name }}'){
        return 301 $scheme://{{ domain_name }}$request_uri;
