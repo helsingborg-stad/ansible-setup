@@ -22,67 +22,40 @@ server {
     root {{ project_folder }};
     index  index.html index.php;
 
+    # Rewrite the css and js files for the different subdirectorys
+    if (!-e $request_filename) {
+        rewrite /wp-admin$ $scheme://$host$uri/ permanent;
+        rewrite ^(/[^/]+)?(/wp-.*) $2 last;
+        rewrite ^(/[^/]+)?(/.*\.php) $2 last;
+    }
+
     # Deny access to any files with a .php extension in the uploads directory
     location ~* /(?:uploads|files)/.*\.php$ {
         deny all;
     }
 
+    # Use cached or actual file if they exists, otherwise pass request to WordPress
     location / {
-        index index.php index.html index.htm;
-        try_files $uri $uri/ /index.php?$args;
+         try_files /wp-content/cache/page_enhanced/${host}${cache_uri}_index.html $uri $uri/ /index.php?$args ;
     }
 
-    location ~* \.(gif|jpg|jpeg|png|css|js)$ {
-        expires max;
-    }
-
+    # Pass php files to fastcgi
     location ~ \.php$ {
-        include /etc/nginx/fastcgi_params;
+        try_files $uri =404;
+        include fastcgi_params;
         fastcgi_pass  127.0.0.1:9000;
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME {{ project_folder }}$fastcgi_script_name;
     }
 
+    location = /robots.txt { access_log off; log_not_found off; }
+    location ~ /\. { deny  all; access_log off; log_not_found off; }
+
+    # Include wc total cache generated settings
+    include {{ project_folder }}/nginx.conf;
+
+    # Deny acces to that file
     location = /nginx.conf {
         deny all;
     }
-
-    include {{ project_folder }}/nginx.conf;
 }
-
-
-# map $http_host $blogid {
-#     default                                 0;
-# }
-
-
-# error_page 403 =404;
-#     location ~ /\. { access_log off; log_not_found off; deny all; }
-#     location ~ ~$ { access_log off; log_not_found off; deny all; }
-#     location ~* wp-admin/includes { deny all; }
-#     location ~* wp-includes/theme-compat/ { deny all; }
-#     location ~* wp-includes/js/tinymce/langs/.*\.php { deny all; }
-#     location /wp-includes/ { internal; }
-#     location ~* ^/wp-content/uploads/.*.(html|htm|shtml|php)$ {
-#     types { }
-#     default_type text/plain; }
-
-#      location ~ ^/files/(.*)$ {
-#     try_files /wp-content/blogs.dir/$blogid/$uri /wp-includes/ms-files.php?file=$1 ;
-#     access_log off; log_not_found off; expires max;
-#     }
-
-#     location = /robots.txt { access_log off; log_not_found off; }
-#     location = /favicon.ico { access_log off; log_not_found off; }
-
-#     location ~ \.php?$ {
-#         try_files $uri =404;
-#         include fastcgi_params;
-#         fastcgi_pass 127.0.0.1:9000;
-#         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-#         fastcgi_read_timeout 300;
-#         fastcgi_intercept_errors on;
-#         fastcgi_split_path_info ^(.+\.php)(.*)$;
-#         fastcgi_hide_header X-Powered-By;
-#     }
-
