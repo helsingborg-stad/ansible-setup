@@ -1,16 +1,22 @@
 ---
 
-- name: create upload directory
+- name: create nfs directory
   file:
     recurse=yes
-    path={{ project_upload_folder }}
+    path={{ item }}
     owner={{ project_user }}
     group={{ project_group }}
     mode=0755
     state=directory
+  with_items:
+    - "{{ project_upload_folder }}"
+    - "{{ project_cache_page_enhanced_folder }}"
 
 - mount:
-    name="{{ project_upload_folder }}"
-    src="{{ hostvars[groups['db'][0]]['ansible_ssh_host'] }}":"{{ project_upload_folder }}"
+    name="{{ item }}"
+    src="{{ hostvars[groups['db'][0]]['ansible_ssh_host'] }}":"{{ item }}"
     fstype=nfs
     state=mounted
+  with_items:
+    - "{{ project_upload_folder }}"
+    - "{{ project_cache_page_enhanced_folder }}"

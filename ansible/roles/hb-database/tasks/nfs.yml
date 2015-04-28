@@ -1,4 +1,11 @@
 ---
+- name: create page_cache directory
+  file:
+    recurse=yes
+    path={{ project_cache_page_enhanced_folder }}
+    mode=0777
+    state=directory
+
 - name: create upload directory
   file:
     recurse=yes
