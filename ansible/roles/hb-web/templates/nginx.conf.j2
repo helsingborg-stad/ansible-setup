@@ -1,21 +1,25 @@
+
 server {
     listen 80;
     listen [::]:80;
-
     server_name  {{ ansible_enp0s8.ipv4.address }};
+    add_header X-WHO-AM-I {{ ansible_nodename }};
 
+    # Check if we need to do a redirect non www -> www
     if ($host != '{{ domain_name }}'){
        return 301 $scheme://{{ domain_name }}$request_uri;
     }
 
+    # Error and Access logs
+    access_log /var/log/nginx/{{ project_name }}-access.log;
+    error_log /var/log/nginx/{{ project_name }}-error.log;
+
+    # Set timeout and max size of request
+    client_max_body_size 20M;
+    client_body_timeout 120;
+
+    # Root for project and what files to access
     root {{ project_folder }};
-    add_header X-WHO-AM-I {{ ansible_nodename }};
-
-    access_log /var/log/nginx/{{ project_name }}-access;
-    error_log /var/log/nginx/{{ project_name }}-error;
-
-    client_max_body_size 64M;
-
     index  index.html index.php;
 
     # Deny access to any files with a .php extension in the uploads directory
@@ -38,4 +42,47 @@ server {
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME {{ project_folder }}$fastcgi_script_name;
     }
+
+    location = /nginx.conf {
+        deny all;
+    }
+
+    include {{ project_folder }}/nginx.conf;
 }
+
+
+# map $http_host $blogid {
+#     default                                 0;
+# }
+
+
+# error_page 403 =404;
+#     location ~ /\. { access_log off; log_not_found off; deny all; }
+#     location ~ ~$ { access_log off; log_not_found off; deny all; }
+#     location ~* wp-admin/includes { deny all; }
+#     location ~* wp-includes/theme-compat/ { deny all; }
+#     location ~* wp-includes/js/tinymce/langs/.*\.php { deny all; }
+#     location /wp-includes/ { internal; }
+#     location ~* ^/wp-content/uploads/.*.(html|htm|shtml|php)$ {
+#     types { }
+#     default_type text/plain; }
+
+#      location ~ ^/files/(.*)$ {
+#     try_files /wp-content/blogs.dir/$blogid/$uri /wp-includes/ms-files.php?file=$1 ;
+#     access_log off; log_not_found off; expires max;
+#     }
+
+#     location = /robots.txt { access_log off; log_not_found off; }
+#     location = /favicon.ico { access_log off; log_not_found off; }
+
+#     location ~ \.php?$ {
+#         try_files $uri =404;
+#         include fastcgi_params;
+#         fastcgi_pass 127.0.0.1:9000;
+#         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+#         fastcgi_read_timeout 300;
+#         fastcgi_intercept_errors on;
+#         fastcgi_split_path_info ^(.+\.php)(.*)$;
+#         fastcgi_hide_header X-Powered-By;
+#     }
+
