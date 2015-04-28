@@ -44,3 +44,10 @@
     dest={{ project_folder }}/wp-content/w3tc-config/master.php
   notify:
     - set owner and group
+
+- name: remove php-curl extesion
+  file:
+    path: /etc/php.d/curl.ini
+    state: absent
+  notify:
+    - restart php-fpm
