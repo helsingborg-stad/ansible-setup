@@ -1,0 +1,13 @@
+---
+
+# GIT
+git_repo: https://github.com/henrikhelsingborg/TT.git
+git_branch: master
+
+# IP tables
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "80"
+  - "3306"
+  - "2049"

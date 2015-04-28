@@ -1,9 +1,0 @@
----
-
-force_mysql_import: False
-
-# IP tables
-firewall_allowed_tcp_ports:
-  - "22"
-  - "25"
-  - "3306"

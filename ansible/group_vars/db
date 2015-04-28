@@ -1,0 +1,13 @@
+---
+
+force_mysql_import: False
+
+# Wordpress specifics
+sql_backup_file: 140415.sql
+
+# IP tables
+firewall_allowed_tcp_ports:
+  - "22"
+  - "25"
+  - "3306"
+  - "2049"

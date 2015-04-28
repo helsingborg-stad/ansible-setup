@@ -1,0 +1,8 @@
+---
+- name: move backup file to server
+  copy: src={{ sql_backup_file }} dest=/tmp
+  register: sql_dump
+
+- name: import backup to server
+  mysql_db: name=helsingborg state=import target=/tmp/{{ sql_backup_file }}
+  when: sql_dump.changed or force_mysql_import

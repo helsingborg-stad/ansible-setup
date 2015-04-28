@@ -1,0 +1,44 @@
+---
+- name: add the group www-data
+  group:
+    name={{ project_group }}
+    state=present
+
+- name: add the user www-data
+  user:
+    name={{ project_user }}
+    group={{ project_group }}
+
+- name: create wordpress directory
+  file:
+    recurse=yes
+    path={{ project_folder }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
+    state=directory
+
+- name: install core packages for frontend
+  yum:
+    name={{item}}
+    state=latest
+  with_items:
+    - php
+    - php-cli
+    - php-mysql
+    - MariaDB-client
+    - php-fpm
+
+- name: copy over php-fpm configurations
+  template:
+    src=www.conf.j2
+    dest=/etc/php-fpm.d/www.conf
+  notify:
+    - restart php-fpm
+
+- name: allow mysql calls over the network
+  shell: "setsebool httpd_can_network_connect_db=1"
+
+- name: set selinux in permissive mode
+  shell: "setenforce 0"
+

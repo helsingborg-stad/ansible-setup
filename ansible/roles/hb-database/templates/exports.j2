@@ -1,0 +1,4 @@
+{% for host in groups['web'] %}
+{{ project_upload_folder }}    {{ hostvars[host]['ansible_ssh_host'] }}(rw,sync,no_root_squash,no_all_squash)
+{{ project_cache_page_enhanced_folder }}    {{ hostvars[host]['ansible_ssh_host'] }}(rw,sync,no_root_squash,no_all_squash)
+{% endfor %}

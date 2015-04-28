@@ -1,0 +1,11 @@
+---
+- name: Setup frontend servers
+  remote_user: root
+  hosts: web
+  sudo: True
+  roles:
+    - { role: common, tags: ['core'] }
+    - { role: geerlingguy.nfs, tags: ['core'] }
+    - { role: geerlingguy.firewall, tags: ['core'] }
+    - { role: nginx, tags: ['core'] }
+    - { role: hb-web }

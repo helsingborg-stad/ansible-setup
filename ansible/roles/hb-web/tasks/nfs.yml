@@ -1,0 +1,22 @@
+---
+
+- name: create nfs directory
+  file:
+    recurse=yes
+    path={{ item }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
+    state=directory
+  with_items:
+    - "{{ project_upload_folder }}"
+    - "{{ project_cache_page_enhanced_folder }}"
+
+- mount:
+    name="{{ item }}"
+    src="{{ hostvars[groups['db'][0]]['ansible_ssh_host'] }}":"{{ item }}"
+    fstype=nfs
+    state=mounted
+  with_items:
+    - "{{ project_upload_folder }}"
+    - "{{ project_cache_page_enhanced_folder }}"
