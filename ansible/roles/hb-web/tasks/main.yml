@@ -1,7 +1,7 @@
 ---
 - include: configure.yml
 - include: selinux.yml tags=deploy
-- include: php-fpm.yml tags=deploy
+- include: php-fpm.yml tags=deploy,php-fpm
 - include: gitclone.yml tags=deploy
 - include: wp-cli.yml
 - include: wp-core.yml tags=deploy
