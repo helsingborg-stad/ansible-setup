@@ -1,4 +1,13 @@
 ---
+- name: create wordpress directory
+  file:
+    recurse=yes
+    path={{ project_folder }}
+    owner={{ project_user }}
+    group={{ project_group }}
+    mode=0755
+    state=directory
+
 - name: register wp-config.php file
   stat: "path={{ project_folder }}/wp-config.php"
   register: wp_config_file
@@ -9,6 +18,7 @@
 
 - name: download wordpress core
   shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
+  sudo_user: "{{ project_user }}"
   with_items:
   - wp core download
   when: wp_index_file.stat.exists == false

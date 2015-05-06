@@ -1,27 +1,4 @@
-- name: install w3 total cache packages
-  yum:
-    name={{item}}
-    state=latest
-  with_items:
-    - php-pear
-    - php-devel
-    - httpd-devel
-    - gcc
-    - zlib-devel
-    - pcre-devel
-  tags:
-    - setup
-
-- name: add w3 cache dummy file
-  template:
-    src=w3c.dummy.nginx.conf.j2
-    dest={{ project_folder }}/nginx.conf
-  notify:
-    - set file permissions
-    - restart nginx
-  tags:
-    - setup
-
+---
 - name: remove php-curl extesion for w3 total cache to work
   file:
     path: /etc/php.d/curl.ini

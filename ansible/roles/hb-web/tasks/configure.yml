@@ -9,15 +9,6 @@
     name={{ project_user }}
     group={{ project_group }}
 
-- name: create wordpress directory
-  file:
-    recurse=yes
-    path={{ project_folder }}
-    owner={{ project_user }}
-    group={{ project_group }}
-    mode=0755
-    state=directory
-
 - name: install core packages for frontend
   yum:
     name={{item}}
@@ -29,16 +20,22 @@
     - MariaDB-client
     - php-fpm
 
-- name: copy over php-fpm configurations
+- name: install w3 total cache packages
+  yum:
+    name={{item}}
+    state=latest
+  with_items:
+    - php-pear
+    - php-devel
+    - httpd-devel
+    - gcc
+    - zlib-devel
+    - pcre-devel
+
+- name: add w3 cache dummy file
   template:
-    src=www.conf.j2
-    dest=/etc/php-fpm.d/www.conf
+    src=w3c.dummy.nginx.conf.j2
+    dest={{ project_folder }}/nginx.conf
   notify:
-    - restart php-fpm
-
-- name: allow mysql calls over the network
-  shell: "setsebool httpd_can_network_connect_db=1"
-
-- name: set selinux in permissive mode
-  shell: "setenforce 0"
-
+    - set file permissions
+    - restart nginx
