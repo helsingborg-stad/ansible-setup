@@ -3,7 +3,7 @@ server {
     listen 80;
     listen [::]:80;
     server_name  {{ ansible_enp0s8.ipv4.address }};
-    add_header X-WHO-AM-I {{ ansible_nodename }};
+    add_header X-WHO-AM-I {{ who_am_i }};
 
     set $cache_uri $request_uri;
 
