@@ -1,8 +1,10 @@
 ---
-- include: configure.yml tags=core
-- include: gitclone.yml tags=deploy,web
+- include: configure.yml
+- include: selinux.yml tags=deploy
+- include: php-fpm.yml tags=deploy,php-fpm
+- include: gitclone.yml tags=deploy
 - include: wp-cli.yml
-- include: wp-core.yml tags=deploy,web
-- include: wp-cache.yml
-- include: nginx.yml tags=deploy,web
+- include: wp-core.yml tags=deploy
+- include: wp-cache.yml tags=deploy
+- include: nginx.yml tags=deploy,nginx
 - include: nfs.yml tags=deploy,nfs

@@ -1,5 +1,4 @@
 ---
-
 - name: create nfs directory
   file:
     recurse=yes

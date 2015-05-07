@@ -1,0 +1,7 @@
+---
+- name: copy over php-fpm configurations
+  template:
+    src=www.conf.j2
+    dest=/etc/php-fpm.d/www.conf
+  notify:
+    - restart php-fpm

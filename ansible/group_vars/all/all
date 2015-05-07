@@ -1,6 +1,8 @@
 ---
 
-# Common
+# COMMON
+# ===============================
+
 domain_name: www.helsingborg.se
 project_name: helsingborg
 project_folder: "/var/www/html"
@@ -9,7 +11,16 @@ project_cache_page_enhanced_folder: "{{ project_folder }}/wp-content/cache/page_
 project_group: www-data
 project_user: www-data
 
-# Mysql
+# DATABASE
+# ===============================
+
+# Should we force a mysql import even if no change has been made
+force_mysql_import: False
+
+# The name of the sql backup
+sql_backup_file: 140415.sql
+
+# Mysql configurations
 mysql_hostname: 10.0.0.41
 mysql_root_password: test
 mysql_enabled_on_startup: yes
@@ -26,3 +37,17 @@ mysql_users:
     host: "%"
     password: test2
     priv: "helsingborg.*:ALL"
+
+# GIT
+# ===============================
+
+git_repo: https://github.com/henrikhelsingborg/TT.git
+git_branch: master
+
+# PHP-FPM
+# ===============================
+
+max_children: "{{ ((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int }}"
+min_spare_servers: "{{ (((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int) // 2 }}"
+max_spare_servers: "{{ (((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int) // 2 }}"
+start_servers: "{{ (((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int) // 2 }}"

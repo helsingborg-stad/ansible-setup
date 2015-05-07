@@ -12,7 +12,7 @@ The script configures:
 - Virtualbox 4.3.x
 
 ## Before startup
-1. Make sure that you move the live database to
+1. Make sure that you move the database to
 ```sh
 /ansible/roles/hb-database/files/XXXXXX.sql
 ```
