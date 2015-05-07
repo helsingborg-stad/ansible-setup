@@ -2,8 +2,8 @@
 lb ansible_ssh_host=10.0.0.51 ansible_ssh_private_key_file=../.vagrant/machines/lb/virtualbox/private_key
 
 [web]
-web3 ansible_ssh_host=10.0.0.31 who_am_i=luffy_dev ansible_ssh_private_key_file=../.vagrant/machines/web3/virtualbox/private_key
-web4 ansible_ssh_host=10.0.0.32 who_am_i=zoro_dev ansible_ssh_private_key_file=../.vagrant/machines/web4/virtualbox/private_key
+web1 ansible_ssh_host=10.0.0.31 who_am_i=luffy_dev ansible_ssh_private_key_file=../.vagrant/machines/web1/virtualbox/private_key
+web2 ansible_ssh_host=10.0.0.32 who_am_i=zoro_dev ansible_ssh_private_key_file=../.vagrant/machines/web2/virtualbox/private_key
 
 [db]
 db ansible_ssh_host=10.0.0.41 ansible_ssh_private_key_file=../.vagrant/machines/db/virtualbox/private_key
