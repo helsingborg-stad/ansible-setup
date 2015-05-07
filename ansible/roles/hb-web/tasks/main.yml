@@ -6,5 +6,5 @@
 - include: wp-cli.yml
 - include: wp-core.yml tags=deploy
 - include: wp-cache.yml tags=deploy
-- include: nginx.yml tags=deploy
+- include: nginx.yml tags=deploy,nginx
 - include: nfs.yml tags=deploy,nfs
