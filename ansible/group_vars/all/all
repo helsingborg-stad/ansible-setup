@@ -51,8 +51,3 @@ max_children: "{{ ((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | 
 min_spare_servers: "{{ (((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int) // 2 }}"
 max_spare_servers: "{{ (((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int) // 2 }}"
 start_servers: "{{ (((ansible_memtotal_mb - (ansible_memtotal_mb * 0.3)) // 60) | int) // 2 }}"
-
-
-
-
-
