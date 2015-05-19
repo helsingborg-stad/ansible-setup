@@ -4,8 +4,8 @@
   hosts: web
   sudo: True
   roles:
-    - { role: common, tags: ['core'] }
-    - { role: geerlingguy.nfs, tags: ['core'] }
-    - { role: geerlingguy.firewall, tags: ['core'] }
-    - { role: nginx, tags: ['core'] }
+    - { role: common, tags: ['setup'] }
+    - { role: geerlingguy.nfs, tags: ['setup'] }
+    - { role: geerlingguy.firewall, tags: ['setup'] }
+    - { role: nginx, tags: ['setup'] }
     - { role: hb-web }

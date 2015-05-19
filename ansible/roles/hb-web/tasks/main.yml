@@ -1,5 +1,5 @@
 ---
-- include: configure.yml
+- include: configure.yml tags=setup
 - include: selinux.yml tags=deploy
 - include: php-fpm.yml tags=deploy,php-fpm
 - include: gitclone.yml tags=deploy

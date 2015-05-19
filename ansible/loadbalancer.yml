@@ -4,6 +4,6 @@
   hosts: loadbalancer
   sudo: True
   roles:
-    - { role: common, tags: ['core'] }
-    - { role: geerlingguy.firewall, tags: ['core'] }
+    - { role: common, tags: ['setup'] }
+    - { role: geerlingguy.firewall, tags: ['setup'] }
     - { role: hb-loadbalancer }

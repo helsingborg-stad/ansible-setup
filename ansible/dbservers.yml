@@ -4,8 +4,8 @@
   hosts: db
   sudo: true
   roles:
-    - { role: common, tags: ['core'] }
-    - { role: geerlingguy.nfs, tags: ['core', 'nfs'] }
-    - { role: geerlingguy.firewall, tags: ['core'] }
-    - { role: mariadb, tags: ['core'] }
+    - { role: common, tags: ['setup'] }
+    - { role: geerlingguy.nfs, tags: ['setup', 'nfs'] }
+    - { role: geerlingguy.firewall, tags: ['setup'] }
+    - { role: mariadb, tags: ['setup'] }
     - { role: hb-database, tags: ['deploy', 'db'] }
