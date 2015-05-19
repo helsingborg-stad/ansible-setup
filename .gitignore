@@ -1,4 +1,5 @@
 *.sql
 .vagrant/
+uploads/
 roles/helsingborg-setup/files/
 *.pyc
