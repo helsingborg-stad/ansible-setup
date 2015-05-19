@@ -13,5 +13,8 @@ web
 db
 loadbalancer
 
+[web:vars]
+nfs_folders=['{{ project_cache_page_enhanced_folder }}']
+
 [all:vars]
 ansible_ssh_user=vagrant

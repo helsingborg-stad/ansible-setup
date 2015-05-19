@@ -1,0 +1,16 @@
+[web]
+web1 ansible_ssh_host=[[INSERT IP]] who_am_i=luffy
+web2 ansible_ssh_host=[[INSERT IP]] who_am_i=zoro
+
+[db]
+db ansible_ssh_host=[[INSERT IP]]
+
+[all:children]
+web
+db
+
+[web:vars]
+nfs_folders=['{{ project_upload_folder }}', '{{ project_cache_page_enhanced_folder }}']
+
+[all:vars]
+ansible_ssh_user=vagrant

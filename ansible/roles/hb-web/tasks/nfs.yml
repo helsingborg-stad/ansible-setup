@@ -8,8 +8,7 @@
     mode=0755
     state=directory
   with_items:
-    - "{{ project_upload_folder }}"
-    - "{{ project_cache_page_enhanced_folder }}"
+    - nfs_folders
 
 - mount:
     name="{{ item }}"
@@ -17,5 +16,4 @@
     fstype=nfs
     state=mounted
   with_items:
-    - "{{ project_upload_folder }}"
-    - "{{ project_cache_page_enhanced_folder }}"
+    - nfs_folders
