@@ -24,3 +24,4 @@ The script configures:
 ## Start
 - cd /basepath/to/repository
 - vagrant up
+- vagrant plugin install vagrant-vbguest
