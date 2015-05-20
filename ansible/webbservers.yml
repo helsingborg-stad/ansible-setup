@@ -1,4 +1,9 @@
 ---
+
+- hosts: db
+  name: Gather facts from databaseservers
+  tasks: [ ]
+
 - name: Setup frontend servers
   remote_user: root
   hosts: web

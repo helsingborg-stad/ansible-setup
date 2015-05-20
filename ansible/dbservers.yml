@@ -1,4 +1,8 @@
 ---
+- hosts: web
+  name: Gather facts from webservers
+  tasks: [ ]
+
 - name: Setup database server
   remote_user: root
   hosts: db
