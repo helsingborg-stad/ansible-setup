@@ -7,13 +7,13 @@
     group={{ project_group }}
     mode=0755
     state=directory
-  with_items:
+  with_flattened:
     - nfs_folders
 
 - mount:
     name="{{ item }}"
-    src="{{ hostvars[groups['db'][0]]['ansible_ssh_host'] }}":"{{ item }}"
+    src="{{ hostvars[groups['db'][0]]['ansible_enp0s8']['ipv4']['address'] }}":"{{ item }}"
     fstype=nfs
     state=mounted
-  with_items:
+  with_flattened:
     - nfs_folders
