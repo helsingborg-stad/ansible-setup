@@ -1,0 +1,11 @@
+# Controls which TCP and UDP port mountd (rpc.mountd) uses.
+MOUNTD_PORT=32800
+
+# Controls which TCP and UDP port status (rpc.statd) uses.
+STATD_PORT=32801
+
+# TCP port rpc.lockd should listen on.
+LOCKD_TCPPORT=32803
+
+# UDP port rpc.lockd should listen on.
+LOCKD_UDPPORT=32769
