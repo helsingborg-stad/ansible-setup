@@ -8,27 +8,29 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
   config.vm.define "db" do |dbha|
-    dbha.vm.box = "centos7"
-    dbha.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    dbha.vm.box = "helsingborg.db"
     dbha.vm.hostname = "db"
-
     dbha.vm.network "private_network", ip: "10.0.0.41"
+
+    dbha.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/vagrant']
   end
 
   config.vm.define "web1" do |web1|
-    web1.vm.box = "centos7"
-    web1.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    web1.vm.box = "helsingborg.web"
     web1.vm.hostname = "web1"
-
     web1.vm.network "private_network", ip: "10.0.0.31"
+    web1.vm.synced_folder "uploads/", "/var/www/html/wp-content/uploads", create: true, type: "nfs"
+
+    web1.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/vagrant']
   end
 
   config.vm.define "web2" do |web2|
-    web2.vm.box = "centos7"
-    web2.vm.box_url = "https://f0fff3908f081cb6461b407be80daf97f07ac418.googledrive.com/host/0BwtuV7VyVTSkUG1PM3pCeDJ4dVE/centos7.box"
+    web2.vm.box = "helsingborg.web"
     web2.vm.hostname = "web2"
-
+    web2.vm.synced_folder "uploads/", "/var/www/html/wp-content/uploads", create: true, type: "nfs"
     web2.vm.network "private_network", ip: "10.0.0.32"
+
+    web2.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/vagrant']
   end
 
   config.vm.define "lb" do |lb|

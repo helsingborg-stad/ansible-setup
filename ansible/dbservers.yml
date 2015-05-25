@@ -1,11 +1,15 @@
 ---
+- hosts: web
+  name: Gather facts from webservers
+  tasks: [ ]
+
 - name: Setup database server
   remote_user: root
   hosts: db
   sudo: true
   roles:
-    - { role: common, tags: ['core'] }
-    - { role: geerlingguy.nfs, tags: ['core', 'nfs'] }
-    - { role: geerlingguy.firewall, tags: ['core'] }
-    - { role: mariadb, tags: ['core'] }
+    - { role: common, tags: ['setup'] }
+    - { role: geerlingguy.nfs, tags: ['setup', 'nfs'] }
+    - { role: geerlingguy.firewall, tags: ['setup', 'firewall'] }
+    - { role: mariadb, tags: ['setup'] }
     - { role: hb-database, tags: ['deploy', 'db'] }

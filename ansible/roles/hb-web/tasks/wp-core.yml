@@ -1,12 +1,6 @@
 ---
 - name: create wordpress directory
-  file:
-    recurse=yes
-    path={{ project_folder }}
-    owner={{ project_user }}
-    group={{ project_group }}
-    mode=0755
-    state=directory
+  command: mkdir -p {{ project_folder }}
 
 - name: register wp-config.php file
   stat: "path={{ project_folder }}/wp-config.php"

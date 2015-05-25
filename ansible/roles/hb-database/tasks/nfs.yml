@@ -1,4 +1,10 @@
 ---
+- name: add sysconfig nfs file for rpcbind
+  copy:
+    src="sysconfig.nfs"
+    dest=/etc/sysconfig/nfs
+  notify: restarting nfs
+
 - name: create page_cache directory
   file:
     recurse=yes
