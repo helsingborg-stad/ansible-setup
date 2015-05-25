@@ -10,6 +10,6 @@
   roles:
     - { role: common, tags: ['setup'] }
     - { role: geerlingguy.nfs, tags: ['setup', 'nfs'] }
-    - { role: geerlingguy.firewall, tags: ['setup'] }
+    - { role: geerlingguy.firewall, tags: ['setup', 'firewall'] }
     - { role: mariadb, tags: ['setup'] }
     - { role: hb-database, tags: ['deploy', 'db'] }
