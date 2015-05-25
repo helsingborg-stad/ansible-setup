@@ -24,4 +24,20 @@ The script configures:
 ## Start
 - cd /basepath/to/repository
 - vagrant up
-- vagrant plugin install vagrant-vbguest
+
+## Ansible commands
+```sh
+cd /basepath/to/repository/ansible
+```
+1. You only need to do this command the first time after vagrant up.
+```sh
+ansible-playbook site.yml
+```
+2. Deploy changes to webbservers.
+```sh
+ansible-playbook webbservers.yml --tags="deploy"
+```
+3. Deploy/Reset changes to dbservers.
+```sh
+ansible-playbook dbservers.yml --tags="deploy"
+```
