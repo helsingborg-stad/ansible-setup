@@ -1,4 +1,14 @@
 ---
+- name: start the services and add them to the boot menu
+  service:
+    name={{ item }}
+    state=started
+    enabled=yes
+  with_items:
+    - rpcbind
+    - nfs-server
+  notify: restarting nfs
+
 - name: add sysconfig nfs file for rpcbind
   copy:
     src="sysconfig.nfs"
