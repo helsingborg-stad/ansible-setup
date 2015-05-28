@@ -1,6 +1,6 @@
 ---
-- name: allow mysql calls over the network
-  shell: "setsebool httpd_can_network_connect_db=1"
+- selinux: policy=targeted state=enforcing
 
-- name: set selinux in permissive mode
-  shell: "setenforce 0"
+- seboolean: name=httpd_can_network_connect state=yes persistent=yes
+
+- seboolean: name=httpd_use_nfs state=yes persistent=yes

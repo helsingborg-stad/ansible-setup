@@ -32,6 +32,13 @@
     - zlib-devel
     - pcre-devel
 
+- name: install selinux packages
+  yum:
+    name={{item}}
+    state=latest
+  with_items:
+    - libsemanage-python
+
 - name: add w3 cache dummy file
   template:
     src=w3c.dummy.nginx.conf.j2
