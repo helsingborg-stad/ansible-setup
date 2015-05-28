@@ -7,7 +7,7 @@
   with_items:
     - rpcbind
     - nfs-server
-  notify: restarting nfs
+  notify: restarting nfs-server
 
 - name: add sysconfig nfs file for rpcbind
   copy:
