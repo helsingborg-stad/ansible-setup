@@ -28,6 +28,9 @@
 - name: ensure files are 0644
   command: find {{ project_folder }} -path {{ project_folder }}/wp-content/upload -prune -o -type f -exec chmod 0644 {} \;
 
+- name: restore context for the files
+  command: restorecon -R {{ project_folder }}
+
 - name: ensure file wp-config is 0660
   file:
     path={{ project_folder }}/wp-config.php
@@ -35,4 +38,3 @@
     group={{ project_group }}
     mode=0660
   when: wp_config_file.stat.exists == true
-
