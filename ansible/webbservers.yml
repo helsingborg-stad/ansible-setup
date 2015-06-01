@@ -11,6 +11,6 @@
   roles:
     - { role: common, tags: ['setup'] }
     - { role: geerlingguy.nfs, tags: ['setup'] }
-    - { role: geerlingguy.firewall, tags: ['setup'] }
+    - { role: geerlingguy.firewall, tags: ['setup', 'firewall'] }
     - { role: nginx, tags: ['setup'] }
     - { role: hb-web }

@@ -5,5 +5,5 @@
   sudo: True
   roles:
     - { role: common, tags: ['setup'] }
-    - { role: geerlingguy.firewall, tags: ['setup'] }
+    - { role: geerlingguy.firewall, tags: ['setup', 'firewall'] }
     - { role: hb-loadbalancer }
