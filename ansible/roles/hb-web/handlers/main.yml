@@ -10,6 +10,7 @@
   command: pwd
   notify:
     - register wp-config.php file
+    - restore context for the files
     - set owner and group www-data
     - ensure directories are 0755
     - ensure files are 0644
