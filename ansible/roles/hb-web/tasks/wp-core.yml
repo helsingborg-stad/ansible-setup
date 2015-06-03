@@ -11,10 +11,8 @@
   register: wp_index_file
 
 - name: download wordpress core
-  shell: 'cd {{ project_folder }};/usr/local/bin/{{ item }}'
+  shell: 'cd {{ project_folder }};/usr/local/bin/wp core download'
   sudo_user: "{{ project_user }}"
-  with_items:
-  - wp core download
   when: wp_index_file.stat.exists == false
   notify:
     - set file permissions
