@@ -2,7 +2,7 @@
 - name: install the htop rpm from a remote repo
   yum: name=http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.i686.rpm state=present
 
-- name: install yum packages
+- name: install basic packages
   sudo: true
   yum:
     name={{item}}
