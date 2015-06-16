@@ -3,3 +3,4 @@
 uploads/
 roles/helsingborg-setup/files/
 *.pyc
+fabfile.py
