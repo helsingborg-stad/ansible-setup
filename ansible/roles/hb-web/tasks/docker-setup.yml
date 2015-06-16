@@ -1,0 +1,20 @@
+---
+- name: install docker and other requirements
+  yum:
+    name={{ item }}
+    state=latest
+  with_items:
+    - docker
+    - python-pip
+
+- name: install python requirements for docker
+  pip:
+    name=docker-py
+    version=1.1.0
+
+- name: start docker
+  sudo: true
+  service:
+    name=docker
+    state=restarted
+    enabled=yes

@@ -12,6 +12,7 @@
     - screen
     - git
     - htop
+    - epel-release
   tags:
     - common
 
