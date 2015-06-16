@@ -1,4 +1,12 @@
 ---
+
+- name: restart docker
+  sudo: true
+  service:
+    name=docker
+    state=restarted
+    enabled=yes
+
 - name: restart php-fpm
   sudo: true
   service:
