@@ -1,0 +1,21 @@
+---
+
+- name: pull branch and start webb application container
+  docker:
+    name: web
+    image: helsingborg/helsingborg-se:{{ git_branch }}
+    state: reloaded
+    pull: always
+    privileged: yes
+    restart_policy: always
+    expose: 80
+    ports:
+      - "80:80"
+    env:
+      WORDPRESS_DB_HOST: "{{ mysql_hostname }}"
+      WORDPRESS_DB_USER: "{{ mysql_users[0].name }}"
+      WORDPRESS_DB_PASSWORD: "{{ mysql_users[0].password }}"
+      WORDPRESS_DB_NAME: "{{ mysql_databases[0].name }}"
+    volumes:
+      - "{{ project_upload_folder }}:{{ project_upload_folder }}"
+      - "{{ project_cache_page_enhanced_folder }}:{{ project_cache_page_enhanced_folder }}"

@@ -9,14 +9,37 @@
     name={{ project_user }}
     group={{ project_group }}
 
+- name: install extra repositorys (epel-release)
+  yum:
+    name=epel-release
+    state=latest
+
 - name: install docker
   yum:
     name=docker
     state=latest
-  notify:
-    - restart docker
 
-- name: install selinux esentials
+- name: start docker
+  sudo: true
+  service:
+    name=docker
+    state=restarted
+    enabled=yes
+
+- name: install python librarys for selinux and docker
   yum:
-    name=libsemanage-python
+    name={{ item }}
     state=latest
+  with_items:
+    - libsemanage-python
+    - python-pip
+
+- name: install python requirements for docker
+  pip:
+    name=docker-py
+    version=1.1.0
+
+- name: remove nginx
+  yum:
+    name=nginx
+    state=absent

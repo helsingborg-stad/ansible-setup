@@ -2,3 +2,4 @@
 - include: configure.yml tags=setup
 - include: selinux.yml tags=deploy
 - include: nfs.yml tags=deploy,nfs
+- include: docker.yml tags=deploy,docker
