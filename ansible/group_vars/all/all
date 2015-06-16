@@ -6,7 +6,7 @@
 domain_name: www.helsingborg.se
 project_name: helsingborg
 project_folder: "/var/www/html"
-project_upload_folder: "{{ project_folder }}/wp-content/upload"
+project_upload_folder: "{{ project_folder }}/wp-content/uploads"
 project_cache_page_enhanced_folder: "{{ project_folder }}/wp-content/cache/page_enhanced"
 project_group: www-data
 project_user: www-data
@@ -41,8 +41,7 @@ mysql_users:
 # GIT
 # ===============================
 
-git_repo: https://github.com/henrikhelsingborg/TT.git
-git_branch: master
+git_branch: develop
 
 # PHP-FPM
 # ===============================
