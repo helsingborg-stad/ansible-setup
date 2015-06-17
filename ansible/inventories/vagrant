@@ -16,5 +16,8 @@ loadbalancer
 [web:vars]
 nfs_folders=['{{ project_cache_page_enhanced_folder }}']
 
+[db:vars]
+mysql_users=[{ 'name': 'wordpress', 'host': '10.0.0.31', 'password': 'test2', 'priv': 'helsingborg.*:ALL' }, { 'name': 'wordpress', 'host': '10.0.0.32', 'password': 'test2', 'priv': 'helsingborg.*:ALL' }]
+
 [all:vars]
 ansible_ssh_user=vagrant
