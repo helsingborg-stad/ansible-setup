@@ -7,7 +7,7 @@ The script configures:
 - one nginx loadbalancer
 
 ## Dependencies
-- Ansible 1.8.x
+- Ansible 1.9.x
 - Vagrant 1.7.x
 - Virtualbox 4.3.x
 
@@ -24,6 +24,7 @@ The script configures:
 ## Start
 - cd /basepath/to/repository
 - vagrant up
+- vagrant ssh-config >> ~/.ssh/config
 
 ## Ansible commands
 ```sh
