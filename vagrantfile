@@ -14,7 +14,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     dbha.vm.hostname = "db"
     dbha.vm.network "private_network", ip: "10.0.0.41"
 
-    dbha.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/vagrant']
+    dbha.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key']
   end
 
   config.vm.define "web1" do |web1|
@@ -25,7 +25,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web1.vm.network "private_network", ip: "10.0.0.31"
     web1.vm.synced_folder "uploads/", "/var/www/html/wp-content/uploads", create: true, type: "nfs"
 
-    web1.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/vagrant']
+    web1.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key']
   end
 
   config.vm.define "web2" do |web2|
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web2.vm.synced_folder "uploads/", "/var/www/html/wp-content/uploads", create: true, type: "nfs"
     web2.vm.network "private_network", ip: "10.0.0.32"
 
-    web2.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key', '~/.ssh/vagrant']
+    web2.ssh.private_key_path = ['~/.vagrant.d/insecure_private_key']
   end
 
   config.vm.define "lb" do |lb|
