@@ -1,65 +1,68 @@
 import os
-import sys
-import time
 import dropbox
-import getopt
 import ntpath
 
 
 # CONSTANS
 # ##########################
 ACCESS_TOKEN = os.environ['DROPBOX_ACCESS_TOKEN']
-USAGE_EXAMPLE = 'usage: dropbox_backup.py [-h for help] [-f absolute path to the file to save to dropbox]'
 
 
 # FUNCTIONS
 # ##########################
 
-
-# (listof String) -> Dict
-# get the cmd params and produce a dict with the validated arguments
-def validate_args(argv):
-    try:
-        opts, args = getopt.getopt(argv,'f:')
-        return dict((x, y) for x, y in opts)
-    except Exception as e:
-        print ('ERROR: {}\n'.format(e))
-        print ('{}\n'.format(USAGE_EXAMPLE))
-        sys.exit()
+# -> DropboxClient
+# produce a dropbox client
+def get_dropbox_client():
+    return dropbox.client.DropboxClient(ACCESS_TOKEN)
 
 
-# String DropboxClient -> Boolean
+# PushParam -> Boolean
 # produce true if successfull in pushing file to dropbox
-def push_to_dropbox(filename, client):
-
+def push(args):
     try:
-        f = open(filename, 'rb')
-        response = client.put_file(ntpath.basename(filename), f)
+        f = open(args['-f'], 'rb')
+        client = get_dropbox_client()
+        response = client.put_file(ntpath.basename(args['-f']), f)
 
         print ('uploaded:', response['path'], response['size'], '\n')
+        return True
 
     except Exception as e:
         print ('ERROR: {}\n'.format(e))
+        return False
 
 
-def main(args):
-    print ('Dropbox backup script v0.0.1\n')
-    start = time.perf_counter()
+# PullParam -> Boolean
+# produce true if successfull in pushing file to dropbox
+def pull(args):
+    try:
+        if (os.path.isfile(args['-t'])):
+            raise Exception('-t: file {} allready exists'.format(args['-t']))
 
-    # Check that the input is correct and get values given
-    cmdargs = validate_args(args)
+        client = get_dropbox_client()
+        f, metadata = client.get_file_and_metadata('{}'.format(args['-f']))
+        out = open(args['-t'], 'wb')
+        out.write(f.read())
+        out.close()
 
-    # Create dropbox client
-    client = dropbox.client.DropboxClient(ACCESS_TOKEN)
-
-    # Push file to dropbox
-    push_to_dropbox(cmdargs['-f'], client)
-
-    # Report run time
-    end = time.perf_counter()
-    total_time = time.strftime("%H:%M:%S", time.gmtime(end-start))
-    print ('Runtime: {}'.format(total_time))
+        print ('pulled down:', args['-t'], metadata['size'], '\n')
+        return True
+    except Exception as e:
+        print ('ERROR: {}\n'.format(e))
+        return False
 
 
-if __name__ == "__main__":
-    main(sys.argv[1:])
+# ->
+# produce true if successfull in pushing file to dropbox
+def list():
+    try:
+        client = get_dropbox_client()
+        for f in client.metadata('/')['contents']:
+            print ('{} | {} | {}'.format(f['path'], f['size'], f['client_mtime']))
+
+        print ('\n')
+
+    except Exception as e:
+        print ('ERROR: {}\n'.format(e))
+        return False
